@@ -1,34 +1,44 @@
 import {
-  //   ImageBackground,
-  //   StyleSheet,
+  ImageBackground,
+  StyleSheet,
+  useWindowDimensions,
+  ActivityIndicator,
   View,
-  //   useWindowDimensions,
-  Text,
+  StatusBar,
 } from "react-native";
 
-// import background from "../assets/imgs/happycow-background.png";
+import background from "../assets/imgs/happycow-background.png";
 
-const SplashScreen = () => {
-  //   const styles = useStyle();
+export const SplashScreen = () => {
+  const styles = useStyle();
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>This is my SplashScreen</Text>
-      {/* <ImageBackground source={{ background }} style={styles.background} /> */}
-    </View>
+    <ImageBackground source={background} style={styles.background}>
+      <View style={styles.activityIndicator}>
+        <StatusBar hidden />
+        <ActivityIndicator size="large" color="#7E4CC7" />
+      </View>
+    </ImageBackground>
   );
 };
 
-// const useStyle = () => {
-//   const { height, width } = useWindowDimensions();
+const useStyle = () => {
+  const { height, width } = useWindowDimensions();
 
-//   const styles = StyleSheet.create({
-//     background: {
-//       width: width,
-//       height: height,
-//     },
-//   });
-//   return styles;
-// };
-
-export default SplashScreen;
+  const styles = StyleSheet.create({
+    background: {
+      width: width,
+      height: height,
+      alignItems: "center",
+    },
+    activityIndicator: {
+      width: 36,
+      height: 36,
+      borderRadius: 50,
+      top: 50,
+      backgroundColor: "white",
+      //   transform: [{ scaleX: 3 }, { scaleY: 3 }], (make it bigger)
+    },
+  });
+  return styles;
+};

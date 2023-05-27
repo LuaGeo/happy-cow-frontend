@@ -32,11 +32,13 @@ const useStyle = () => {
       alignItems: "center",
     },
     activityIndicator: {
-      width: 36,
-      height: 36,
+      width: 60,
+      height: 60,
       borderRadius: 50,
       top: 50,
       backgroundColor: "white",
+      justifyContent: "center",
+      //   alignItems: "center",
       //   transform: [{ scaleX: 3 }, { scaleY: 3 }], (make it bigger)
     },
   });

@@ -11,6 +11,7 @@ export const RestaurantsScreen = ({ restaurants }) => {
         renderItem={({ item }) => {
           return <Restaurant item={item} />;
         }}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

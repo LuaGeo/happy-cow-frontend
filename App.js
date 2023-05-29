@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { SplashScreen } from "./containers/SplashScreen";
 import { RestaurantsScreen } from "./containers/RestaurantsScreen";
+import { RestaurantScreen } from "./containers/RestaurantScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,9 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Restaurants">
             {() => <RestaurantsScreen restaurants={restaurants} />}
+          </Stack.Screen>
+          <Stack.Screen name="Restaurant">
+            {() => <RestaurantScreen restaurants={restaurants} />}
           </Stack.Screen>
         </Stack.Navigator>
       )}

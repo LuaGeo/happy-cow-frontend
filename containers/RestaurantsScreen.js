@@ -1,5 +1,5 @@
 import { View, FlatList } from "react-native";
-import { Restaurant } from "../components/Restaurant";
+import { RestaurantCard } from "../components/RestaurantCard";
 
 export const RestaurantsScreen = ({ restaurants }) => {
   //   console.log(restaurants);
@@ -9,7 +9,7 @@ export const RestaurantsScreen = ({ restaurants }) => {
         data={restaurants}
         keyExtractor={(restaurants) => String(restaurants._id)}
         renderItem={({ item }) => {
-          return <Restaurant item={item} />;
+          return <RestaurantCard item={item} />;
         }}
         showsVerticalScrollIndicator={false}
       />

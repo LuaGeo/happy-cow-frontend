@@ -7,11 +7,21 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-export const Restaurant = ({ item }) => {
+import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+
+export const RestaurantCard = ({ item }) => {
   const styles = useStyle();
+  const navigation = useNavigation();
+  const route = useRoute();
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate("Restaurant", { id: item._id, item: item });
+      }}
+    >
       {item.thumbnail === "https://www.happycow.net/img/no-image.jpg" ? (
         <Image
           source={require("../assets/imgs/happycow-logogray.png")}
@@ -26,6 +36,7 @@ export const Restaurant = ({ item }) => {
       <View>
         <Text>{item.name}</Text>
       </View>
+      <Text>{item._id}</Text>
     </TouchableOpacity>
   );
 };

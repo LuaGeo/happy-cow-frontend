@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SplashScreen } from "./containers/SplashScreen";
 import { RestaurantsScreen } from "./containers/RestaurantsScreen";
 import { RestaurantScreen } from "./containers/RestaurantScreen";
-import { ProfileScreen } from "./containers/ProfileScreen";
+import { MapScreen } from "./containers/MapScreen";
 import { FavoritesScreen } from "./containers/FavoritesScreen";
 
 import { AntDesign } from "@expo/vector-icons";
@@ -80,21 +80,18 @@ export default function App() {
                 </Tab.Screen>
 
                 <Tab.Screen
-                  name="TabProfile"
+                  name="TabMap"
                   options={{
-                    tabBarLabel: "Moi",
+                    tabBarLabel: "Carte",
                     tabBarIcon: ({ color, size }) => (
-                      <AntDesign name={"user"} size={size} color={color} />
+                      <Fontisto name="map" size={size} color={color} />
                     ),
                   }}
                 >
                   {() => (
                     <Stack.Navigator>
-                      <Stack.Screen
-                        name="Around Me"
-                        options={{ headerShown: false }}
-                      >
-                        {() => <ProfileScreen />}
+                      <Stack.Screen name="Map" options={{ headerShown: false }}>
+                        {() => <MapScreen restaurants={restaurants} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

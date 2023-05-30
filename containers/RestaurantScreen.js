@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getRestaurantCategory } from "../utils/getRestaurantCategory";
 import { displayStars } from "../utils/displayStars";
+import { displayPriceRate } from "../utils/displayPriceRate";
 
 export const RestaurantScreen = () => {
   const route = useRoute();
@@ -44,6 +45,7 @@ export const RestaurantScreen = () => {
       />
       <Text>{restaurant.name}</Text>
       <Text>{displayStars(restaurant.rating)}</Text>
+      {displayPriceRate(item.price)}
     </View>
   );
 };

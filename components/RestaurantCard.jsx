@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 
 import { getRestaurantCategory } from "../utils/getRestaurantCategory";
+import { displayPriceRate } from "../utils/displayPriceRate";
 
 export const RestaurantCard = ({ item }) => {
   const styles = useStyle();
@@ -42,6 +43,7 @@ export const RestaurantCard = ({ item }) => {
         source={getRestaurantCategory(item.type)}
         style={{ width: 30, height: 30 }}
       />
+      {displayPriceRate(item.price)}
     </TouchableOpacity>
   );
 };

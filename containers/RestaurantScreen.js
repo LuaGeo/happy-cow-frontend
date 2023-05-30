@@ -2,7 +2,7 @@ import { Text, Image, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { category } from "../utils/category";
+import { getRestaurantCategory } from "../utils/getRestaurantCategory";
 
 export const RestaurantScreen = () => {
   const route = useRoute();
@@ -23,6 +23,8 @@ export const RestaurantScreen = () => {
         setIsLoading(false);
       };
       fetchRestaurant();
+
+      console.log(restaurantCategory);
     } catch (error) {
       console.log(error);
     }
@@ -38,10 +40,10 @@ export const RestaurantScreen = () => {
       />
       <Text>{restaurant.name}</Text>
 
-      <Text>{category(restaurant.type)}</Text>
-      <Image source={require("../assets/imgs/category_b-b.png")} />
-
-      {/* <Image source={require(category(restaurant.type))} /> */}
+      <Image
+        source={getRestaurantCategory(restaurant.type)}
+        style={{ width: 30, height: 30 }}
+      />
     </View>
   );
 };

@@ -12,6 +12,7 @@ import foodTruck from "../assets/imgs/categoryIcons/category_food-truck.png";
 import iceCream from "../assets/imgs/categoryIcons/category_ice-cream.png";
 import organization from "../assets/imgs/categoryIcons/category_organization.png";
 import other from "../assets/imgs/categoryIcons/category_other.png";
+import professional from "../assets/imgs/categoryIcons/category_professional.png";
 
 export const getRestaurantCategory = (type) => {
   switch (type) {
@@ -45,7 +46,9 @@ export const getRestaurantCategory = (type) => {
       return organization;
     case "Other":
       return other;
+    case "Professional":
+      return professional;
     default:
-      return "not connected";
+      return other;
   }
 };

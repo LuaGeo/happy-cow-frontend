@@ -3,12 +3,19 @@ import { useState, useEffect } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { SplashScreen } from "./containers/SplashScreen";
 import { RestaurantsScreen } from "./containers/RestaurantsScreen";
 import { RestaurantScreen } from "./containers/RestaurantScreen";
+import { ProfileScreen } from "./containers/ProfileScreen";
+import { FavoritesScreen } from "./containers/FavoritesScreen";
+
+import { AntDesign } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [restaurants, setRestaurants] = useState();
@@ -42,11 +49,79 @@ export default function App() {
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="Restaurants">
-            {() => <RestaurantsScreen restaurants={restaurants} />}
-          </Stack.Screen>
-          <Stack.Screen name="Restaurant">
-            {() => <RestaurantScreen restaurants={restaurants} />}
+          <Stack.Screen name="Tab" options={{ headerShown: false }}>
+            {() => (
+              <Tab.Navigator
+                screenOptions={{
+                  headerShown: false,
+                  tabBarActiveTintColor: "#7E4CC7",
+                  tabBarInactiveTintColor: "gray",
+                }}
+              >
+                <Tab.Screen
+                  name="TabHome"
+                  options={{
+                    tabBarLabel: "Explorer",
+                    tabBarIcon: ({ color, size }) => (
+                      <AntDesign name="search1" size={size} color={color} />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen name="Restaurants">
+                        {() => <RestaurantsScreen restaurants={restaurants} />}
+                      </Stack.Screen>
+                      <Stack.Screen name="Restaurant">
+                        {() => <RestaurantScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+
+                <Tab.Screen
+                  name="TabProfile"
+                  options={{
+                    tabBarLabel: "Moi",
+                    tabBarIcon: ({ color, size }) => (
+                      <AntDesign name={"user"} size={size} color={color} />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Around Me"
+                        options={{ headerShown: false }}
+                      >
+                        {() => <ProfileScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+
+                <Tab.Screen
+                  name="TabFavorites"
+                  options={{
+                    tabBarLabel: "Favorites",
+                    tabBarIcon: ({ color, size }) => (
+                      <Fontisto name="favorite" size={size} color={color} />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Favorites"
+                        options={{ headerShown: false }}
+                      >
+                        {() => <FavoritesScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+              </Tab.Navigator>
+            )}
           </Stack.Screen>
         </Stack.Navigator>
       )}

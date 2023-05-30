@@ -10,6 +10,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 
+import { getRestaurantCategory } from "../utils/getRestaurantCategory";
+
 export const RestaurantCard = ({ item }) => {
   const styles = useStyle();
   const navigation = useNavigation();
@@ -36,7 +38,10 @@ export const RestaurantCard = ({ item }) => {
       <View>
         <Text>{item.name}</Text>
       </View>
-      <Text>{item._id}</Text>
+      <Image
+        source={getRestaurantCategory(item.type)}
+        style={{ width: 30, height: 30 }}
+      />
     </TouchableOpacity>
   );
 };
